@@ -1,0 +1,47 @@
+version: '2'                
+services: 
+  redis:                    
+    build: 
+      context: ./docker/redis
+      dockerfile: Dockerfile
+    image: solve-redis:latest
+    ports:
+      - "6379:6379"
+  solve:                      
+    build: 
+      context: ./solve
+      dockerfile: Dockerfile
+    image: solve:latest
+    depends_on:                          
+      - redis
+    volumes:
+      - "/tmp:/tmp"
+    environment:
+      REDIS_HOST: 127.0.0.1
+      REDIS_PORT: 6379
+  solve-backend:                      
+    build: 
+      context: ./solve-backend
+      dockerfile: Dockerfile
+    image: solve-backend:latest
+    depends_on:                          
+      - redis
+    volumes:
+      - "/tmp:/tmp"
+    ports:
+      - "8000:8000"
+    environment:
+      REDIS_HOST: 127.0.0.1
+      REDIS_PORT: 6379
+  solve-frontend:                       
+    build: 
+      context: ./solve-frontend
+      dockerfile: Dockerfile
+    image: solve-frontend:latest      
+    depends_on:             
+      - solve-backend                  
+    ports:
+      - "8080:8080"      
+    environment:
+      BACKEND_HOST: 127.0.0.1
+      BACKEND_PORT: 8000      
