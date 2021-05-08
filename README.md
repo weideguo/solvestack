@@ -77,9 +77,7 @@ echo $CURRENT_IP
 sed -i "s|127.0.0.1|${CURRENT_IP}|g"  docker-compose.yml
 
 #根据实际情况可能要修改以下文件 修改对应的源
-#solve/Dockerfile
-#solve-backend/Dockerfile
-#solve-frontend/Dockerfile 
+docker-compose.yml
 
 #构建镜像并启动容器，生成四个镜像并启动四个容器（再次执行不会新创建镜像）
 docker-compose up -d
@@ -98,7 +96,13 @@ python/node镜像位提供python/node运行环境即可，即为存在python命�
 ### more ###
 ```
 #手动构建镜像样例
-docker build -t solve:latest -f Dockerfile .
+#solve
+#docker build -t solve:latest -f Dockerfile .
+docker build -t solve:latest --build-arg INDEX_URL=https://mirrors.aliyun.com/pypi/simple/ --build-arg TRUSTED_HOST=mirrors.aliyun.com  -f Dockerfile .      
+#solve-backend
+docker build -t solve-backend:latest --build-arg INDEX_URL=https://mirrors.aliyun.com/pypi/simple/ --build-arg TRUSTED_HOST=mirrors.aliyun.com  -f Dockerfile .
+#solve-frontend
+docker build -t solve-frontend:latest --build-arg REGISTRY=https://registry.npm.taobao.org/  -f Dockerfile .
 ```
 
 ```

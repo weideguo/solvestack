@@ -1,4 +1,4 @@
-version: '2'                
+version: "2"                
 services: 
   redis:                    
     build: 
@@ -11,6 +11,9 @@ services:
     build: 
       context: ./solve
       dockerfile: Dockerfile
+      args:
+        INDEX_URL: https://mirrors.aliyun.com/pypi/simple/ 
+        TRUSTED_HOST: mirrors.aliyun.com 
     image: solve:latest
     depends_on:                          
       - redis
@@ -23,6 +26,9 @@ services:
     build: 
       context: ./solve-backend
       dockerfile: Dockerfile
+      args:
+        INDEX_URL: https://mirrors.aliyun.com/pypi/simple/ 
+        TRUSTED_HOST: mirrors.aliyun.com 
     image: solve-backend:latest
     depends_on:                          
       - redis
@@ -37,6 +43,8 @@ services:
     build: 
       context: ./solve-frontend
       dockerfile: Dockerfile
+      args:
+        REGISTRY: https://registry.npm.taobao.org/
     image: solve-frontend:latest      
     depends_on:             
       - solve-backend                  
