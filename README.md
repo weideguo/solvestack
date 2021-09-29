@@ -95,7 +95,7 @@ docker-compose up -d
 ### info ###
 http://${CURRENT_IP}:8080    admin/test1234
 
-需要联网从dockerhub的公共仓库（建议使用国内代理）pull三个镜像 redis:4.0  python:3.5  node:10.13
+需要联网从dockerhub的公共仓库（建议使用国内代理）pull三个镜像 redis:4.0  python:3.7  node:10.13
 也可以自行在本地现行构建这三个镜像，从而不需要依赖网络下载。 
 python/node镜像位提供python/node运行环境即可，即为存在python命令以及node命令。
 
