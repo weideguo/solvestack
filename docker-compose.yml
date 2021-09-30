@@ -1,12 +1,12 @@
 version: "2"                
 services: 
-  redis:                    
-    build: 
-      context: ./docker/redis
-      dockerfile: Dockerfile
-    image: solve-redis:latest
-    ports:
-      - "6379:6379"
+  redis:
+    image: redis:4.0
+    container_name: redis
+    restart: always
+    command: redis-server --requirepass my_redis_passwd    
+    volumes:
+      - "./docker/redis/dump.rdb:/data"    
   solve:                      
     build: 
       context: ./solve
@@ -14,14 +14,15 @@ services:
       args:
         INDEX_URL: https://mirrors.aliyun.com/pypi/simple/ 
         TRUSTED_HOST: mirrors.aliyun.com 
-    image: solve:0.14.4
+    image: solve:${VERSION}
     depends_on:                          
       - redis
     volumes:
       - "/tmp:/tmp"
     environment:
-      REDIS_HOST: 127.0.0.1
+      REDIS_HOST: redis
       REDIS_PORT: 6379
+      REDIS_PASSWORD: my_redis_passwd
   solve-backend:                      
     build: 
       context: ./solve-backend
@@ -29,7 +30,7 @@ services:
       args:
         INDEX_URL: https://mirrors.aliyun.com/pypi/simple/ 
         TRUSTED_HOST: mirrors.aliyun.com 
-    image: solve-backend:0.14.4
+    image: solve-backend:${VERSION}
     depends_on:                          
       - redis
     volumes:
@@ -37,15 +38,16 @@ services:
     ports:
       - "8000:8000"
     environment:
-      REDIS_HOST: 127.0.0.1
+      REDIS_HOST: redis
       REDIS_PORT: 6379
+      REDIS_PASSWORD: my_redis_passwd
   solve-frontend:                       
     build: 
       context: ./solve-frontend
       dockerfile: Dockerfile
       args:
         REGISTRY: https://registry.npm.taobao.org/
-    image: solve-frontend:0.14.4      
+    image: solve-frontend:${VERSION}     
     depends_on:             
       - solve-backend                  
     ports:
