@@ -1,9 +1,9 @@
 [submodule "solve"]
 	path = solve
-	url = https://github.com/zouzhicun/solve.git
+	url = https://github.com/weideguo/solve.git
 [submodule "solve-backend"]
 	path = solve-backend
-	url = https://github.com/zouzhicun/solve-backend.git
+	url = https://github.com/weideguo/solve-backend.git
 [submodule "solve-frontend"]
 	path = solve-frontend
-	url = https://github.com/zouzhicun/solve-frontend.git
+	url = https://github.com/weideguo/solve-frontend.git
