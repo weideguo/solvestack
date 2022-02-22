@@ -187,7 +187,7 @@ playbook
 #选择cluster操作
 [{{db2.host.ip}}]
 global.xx=`date +%s`_$RANDOM
-PUT:{{session.file_to_send}}:/tmp/upload_test/{{site}}/x
+__put__ {{session.file_to_send}} /tmp/upload_test/{{site}}/x
 #cat /tmp/`basename {{session.file_to_send}}`
 echo "xxx"
 ```
@@ -206,7 +206,7 @@ playbook
 #如果本地目录不存在 则创建
 #选择cluster进行操作
 [{{db1.host.ip}}]
-GET:/tmp/x/a/b:{{session.file_2_get}}
+__get__ {{session.file_to_get}} /tmp/x/a/b 
 ```
 
 web页面输入
