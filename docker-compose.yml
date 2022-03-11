@@ -53,5 +53,5 @@ services:
     ports:
       - "8080:8080"      
     environment:
-      BACKEND_HOST: 127.0.0.1
+      BACKEND_HOST: ${BACKEND_HOST}
       BACKEND_PORT: 8000      

@@ -83,7 +83,7 @@ CURRENT_IP=`ip addr | grep inet |grep -v inet6 | awk '{print $2}' | awk -F "/" '
 #请务必先确认ip是否正确
 echo $CURRENT_IP
 
-sed -i "s|127.0.0.1|${CURRENT_IP}|g"  docker-compose.yml
+sed -i "s|127.0.0.1|${CURRENT_IP}|g" .env
 
 #根据实际情况可能要修改以下文件 修改对应的源
 docker-compose.yml
