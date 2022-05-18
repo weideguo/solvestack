@@ -6,6 +6,6 @@ FROM redis:4.0
 LABEL maintainer="wdg(https://github.com/weideguo)"
 
 #use exist file for redis data
-ADD ./dump.rdb   /data/
+#ADD ./dump.rdb   /data/
 
 CMD ["redis-server"]

@@ -6,7 +6,7 @@ services:
     restart: always
     command: redis-server --requirepass my_redis_passwd    
     volumes:
-      - "./docker/redis/dump.rdb:/data"    
+      - "./docker/redis/:/data/"    
   solve:                      
     build: 
       context: ./solve

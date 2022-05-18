@@ -28,7 +28,7 @@ git clone --recursive https://github.com/weideguo/solvestack.git
 * nginx           前后端的代理 生产环境应该使用https防止信息传输时泄露
 
 
-depoly
+deploy
 --------------
 
 部署架构
