@@ -332,10 +332,10 @@ pause: [3,6,10,18]
 ```
 
 执行时选择断点执行，则参数描述文件中的pause不生效，逐行运行，或者直接运行所有，或者终止所有
-<img src="./img/yaml.png"/>
+<img src="./img/debug_execute.png"/>
 
 
 正常执行，则强制使用pause的定义进行阻塞，即使中途改种逐行调试pause的定义依然生效，可以终止所有
-<img src="./img/yaml.png"/>
+<img src="./img/normal_execute.png"/>
 
 
