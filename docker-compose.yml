@@ -4,7 +4,7 @@ services:
     image: redis:4.0
     container_name: redis
     restart: always
-    command: redis-server --requirepass my_redis_passwd    
+    command: redis-server --requirepass ${REDIS_PASSWORD}    
     volumes:
       - "./docker/redis/:/data/"    
   solve:                      
@@ -18,11 +18,13 @@ services:
     depends_on:                          
       - redis
     volumes:
-      - "/tmp:/tmp"
+      - "${DATA_PATH_LOCAL}:${DATA_PATH_DOCKER}"
     environment:
-      REDIS_HOST: redis
-      REDIS_PORT: 6379
-      REDIS_PASSWORD: my_redis_passwd
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+      AES_KEY: ${AES_KEY}
+    privileged: true
   solve-backend:                      
     build: 
       context: ./solve-backend
@@ -34,13 +36,20 @@ services:
     depends_on:                          
       - redis
     volumes:
-      - "/tmp:/tmp"
+      - "${DATA_PATH_LOCAL}:${DATA_PATH_DOCKER}"
+      - "./docker/solve-backend/db.sqlite3:/data/solve-backend/db.sqlite3"
     ports:
-      - "8000:8000"
+      - "${BACKEND_PORT}:8000"
     environment:
-      REDIS_HOST: redis
-      REDIS_PORT: 6379
-      REDIS_PASSWORD: my_redis_passwd
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+      SECRET_KEY: ${SECRET_KEY}
+      MONGO_URI: ${MONGO_URI}
+      MONGO_DB: ${MONGO_DB}
+      BACKEND_NAME: ${BACKEND_NAME}
+      DATA_PATH: ${DATA_PATH_DOCKER}
+    privileged: true
   solve-frontend:                       
     build: 
       context: ./solve-frontend
@@ -51,7 +60,9 @@ services:
     depends_on:             
       - solve-backend                  
     ports:
-      - "8080:8080"      
+      - "${FRONTEND_PORT}:8080"      
     environment:
       BACKEND_HOST: ${BACKEND_HOST}
-      BACKEND_PORT: 8000      
+      BACKEND_PORT: ${BACKEND_PORT}
+      BACKEND_NAME: ${BACKEND_NAME}
+    privileged: true 

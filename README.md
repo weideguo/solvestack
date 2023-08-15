@@ -2,7 +2,7 @@
 
 # SolveStack
 
-[![Python 2.7|3.5|3.7](https://img.shields.io/badge/python-2.7%7C3.5%7C3.7-blue.svg)](https://github.com/weideguo/solvestack) 
+[![Python 3.9](https://img.shields.io/badge/python-3.9-blue.svg)](https://github.com/weideguo/solvestack) 
 [![nodejs](https://img.shields.io/badge/nodejs-blue.svg)](https://github.com/weideguo/solvestack) 
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE) 
 
@@ -73,33 +73,24 @@ docker
 --------------
 ### start ### 
 ```
-#复制共享的文件到共享目录 
-#如果新创建的playbook，请都存放于共享目录以便各个组件能通过绝对路径访问
-#容器间共享目录的设置详细见docker-compose.yml中volumes
-cp -r solve/playbook /tmp/
-
-#获取当前主机的ip，即为前后端通信使用的ip
-CURRENT_IP=`ip addr | grep inet |grep -v inet6 | awk '{print $2}' | awk -F "/" '{print $1}' | grep -E "(^192\.|^172\.|^10\.)"`
-#请务必先确认ip是否正确
-echo $CURRENT_IP
-
-sed -i "s|127.0.0.1|${CURRENT_IP}|g" .env
-
-#根据实际情况可能要修改以下文件 修改对应的源
-docker-compose.yml
-
-#构建镜像并启动容器，生成四个镜像并启动四个容器（再次执行不会新创建镜像）
+cd ${SRC_HOME}
+# 设置相关依赖参数，根据注释的信息进行更改，更改完毕删除`#`注释的信息
+vim .env
+# 构建镜像并启动容器，生成四个镜像并启动四个容器（再次执行不会新创建镜像）
 docker-compose up -d
+
+# 启动redis后，进入redis命令设置持久化
+CONFIG SET SAVE "900 1 300 10 60 10000"
 ```
 
 ### info ###
 http://${CURRENT_IP}:8080    admin/test1234
 
-需要联网从dockerhub的公共仓库（建议使用国内代理）pull三个镜像 redis:4.0  python:3.7  node:10.13
+需要联网从dockerhub的公共仓库（建议使用国内代理）pull三个镜像 redis:4.0  python:3.9  node:16.14
 也可以自行在本地现行构建这三个镜像，从而不需要依赖网络下载。 
 python/node镜像位提供python/node运行环境即可，即为存在python命令以及node命令。
 
-注意：该部署方式只是用于测试，存在安全风险，请勿使用于生产环境。
+注意：该部署方式只是用于内网安全环境，请勿对公网开放。生产环境可以考虑对后端服务、前端服务使用nginx实现https代理防止抓包泄露数据。
 
 
 ### more ###
