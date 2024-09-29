@@ -1,0 +1,36 @@
+62c62,63
+< 		'shebang': {
+---
+> 		'shebang': [
+>           {
+65c66,67
+< 		},
+---
+> 		  },
+>         ],
+85c87,105
+< 			}
+---
+> 			},
+>             // 自定义语法
+>             {
+>                 pattern: /\b(__put__|__get__|__save__)\s+/,
+>                 alias: 'constant',
+>             },
+>             {
+>                 pattern: /\[.+\]\s*\b/,
+>                 alias: 'constant'
+>             },
+>             {
+>                // 存在bug，有部分未匹配
+>                pattern: /\{\{[^}]+?\}\}/,
+>                alias: 'variable' 
+>             },
+>             {
+>                 pattern: /\b(select|global)(?=\.)/,
+>                 alias: 'constant',
+>             },
+171c191
+< 		}
+---
+> 		},
