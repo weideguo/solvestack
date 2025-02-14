@@ -2,7 +2,7 @@
 
 
 ### 创建表  
-字段说明参考[solve-backend/auth_new/models.py](../solve-backend/auth_new/models.py#L35-L60)
+字段说明参考[solve-backend/auth_new/models.py](https://github.com/weideguo/solve-backend/blob/master/auth_new/models.py#L35-L60)
 ```sql
 CREATE TABLE IF NOT EXISTS "auth_new_permanenttoken" (
 "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,  
