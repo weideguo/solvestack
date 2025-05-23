@@ -81,7 +81,8 @@ insert into auth_new_apiinvokerule values
 '["/api/v1/target/update"]', 
 '["127.0.0.1"]', 
 '["GET","POST"]', 
-'[{"a": "a.*", "b": "b.*"}]', '[{"name": "server_.*", "v": "v.*"}]'
+'[{"a": "a.*", "b": "b.*"}]', 
+'[{"name": "server_.*", "v": "v.*"}]'
 );
 ```
 

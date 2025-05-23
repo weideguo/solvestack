@@ -1,20 +1,10 @@
-62c62,63
-< 		'shebang': {
----
-> 		'shebang': [
->           {
-65c66,67
-< 		},
----
-> 		  },
->         ],
-85c87,105
+94c94,112
 < 			}
 ---
 > 			},
 >             // 自定义语法
 >             {
->                 pattern: /\b(__put__|__get__|__save__)\s+/,
+>                 pattern: /\b(__put__|__get__|__save__|__sync__)\s+/,
 >                 alias: 'constant',
 >             },
 >             {
@@ -30,7 +20,3 @@
 >                 pattern: /\b(select|global)(?=\.)/,
 >                 alias: 'constant',
 >             },
-171c191
-< 		}
----
-> 		},

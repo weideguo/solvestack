@@ -14,7 +14,7 @@ services:
       args:
         INDEX_URL: https://mirrors.aliyun.com/pypi/simple/ 
         TRUSTED_HOST: mirrors.aliyun.com 
-    image: solve:${VERSION}
+    image: solve:${SOLVE_VERSION}
     depends_on:                          
       - redis
     volumes:
@@ -32,7 +32,7 @@ services:
       args:
         INDEX_URL: https://mirrors.aliyun.com/pypi/simple/ 
         TRUSTED_HOST: mirrors.aliyun.com 
-    image: solve-backend:${VERSION}
+    image: solve-backend:${SOLVE_BACKEND_VERSION}
     depends_on:                          
       - redis
     volumes:
@@ -47,7 +47,6 @@ services:
       SECRET_KEY: ${SECRET_KEY}
       MONGO_URI: ${MONGO_URI}
       MONGO_DB: ${MONGO_DB}
-      BACKEND_NAME: ${BACKEND_NAME}
       DATA_PATH: ${DATA_PATH_DOCKER}
     privileged: true
   solve-frontend:                       
@@ -55,8 +54,8 @@ services:
       context: ./solve-frontend
       dockerfile: Dockerfile
       args:
-        REGISTRY: https://registry.npm.taobao.org/
-    image: solve-frontend:${VERSION}     
+        REGISTRY: https://registry.npmmirror.com/
+    image: solve-frontend:${SOLVE_FRONTEND_VERSION}     
     depends_on:             
       - solve-backend                  
     ports:

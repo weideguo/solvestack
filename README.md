@@ -81,14 +81,22 @@ docker-compose up -d
 
 # 启动redis后，进入redis命令设置持久化
 CONFIG SET SAVE "900 1 300 10 60 10000"
+
+# 入solve容器，手动安装以下依赖
+apt update && apt install -y sshpass pv
 ```
+依照[highlight](./highlight)进行自定义高亮设置。  
 
 ### info ###
 http://${CURRENT_IP}:8080    admin/test1234
 
-需要联网从dockerhub的公共仓库（建议使用国内代理）pull三个镜像 redis:4.0  python:3.9  node:16.14
+需要联网从dockerhub的公共仓库（建议使用国内代理）pull三个镜像 
+```  
+redis:4.0  
+python:3.13  
+node:22.14.0
+```
 也可以自行在本地现行构建这三个镜像，从而不需要依赖网络下载。 
-python/node镜像位提供python/node运行环境即可，即为存在python命令以及node命令。
 
 注意：该部署方式只是用于内网安全环境，请勿对公网开放。生产环境可以考虑对后端服务、前端服务使用nginx实现https代理防止抓包泄露数据。
 
@@ -115,6 +123,15 @@ docker run --name solve-frontend --env REDIS_HOST=192.168.253.128 -p 8080:8080 -
 
 ```
 
+```
+# docker-compose 单个容器构建与启动
+# 构建
+docker-compose build solve
+# 启动（通过关闭会话实现放入后台，不能运行ctrl+c退出）
+docker-compose up -d solve
+# 以交互模式启动，方便调试
+docker-compose run solve /bin/sh
+```
 
 usage
 --------------
