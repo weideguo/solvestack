@@ -4,7 +4,7 @@
 > 			},
 >             // 自定义语法
 >             {
->                 pattern: /\b(__put__|__get__|__save__|__sync__)\s+/,
+>                 pattern: /\b(__put__|__get__|__save__|__sync__|__render__|__call__)\s+/,
 >                 alias: 'constant',
 >             },
 >             {

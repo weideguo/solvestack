@@ -31,10 +31,7 @@ CREATE TABLE IF NOT EXISTS "auth_new_apiinvokerule" (
 
 ### 生成token  
 ```shell
-# 容易被猜测
-# echo `date +%s`.${RANDOM} | md5sum
-
-# 安全的token生成
+echo `date +%s%N`.${RANDOM} | md5sum
 openssl rand -base64 2048 | md5sum
 python -c 'import random;begin_char=33;end_char=126;key_len=2048;print(("".join(map(lambda i : chr(random.randint(begin_char,end_char)) ,range(key_len)))).encode("latin1"))' | md5sum
 

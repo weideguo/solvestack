@@ -2,8 +2,8 @@
 
 # SolveStack
 
-[![Python 3.9](https://img.shields.io/badge/python-3.9-blue.svg)](https://github.com/weideguo/solvestack) 
-[![nodejs](https://img.shields.io/badge/nodejs-blue.svg)](https://github.com/weideguo/solvestack) 
+[![Python 3.9|3.11|3.13](https://img.shields.io/badge/python-3.9%7C3.11%7C3.13-blue.svg)](https://github.com/weideguo/solvestack) 
+[![nodejs 18|20|22](https://img.shields.io/badge/node-18%7C20%7C22-green.svg)](https://github.com/weideguo/solvestack) 
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE) 
 
 
@@ -88,7 +88,8 @@ apt update && apt install -y sshpass pv
 依照[highlight](./highlight)进行自定义高亮设置。  
 
 ### info ###
-http://${CURRENT_IP}:8080    admin/test1234
+http://${CURRENT_IP}:8080    
+admin/test1234  
 
 需要联网从dockerhub的公共仓库（建议使用国内代理）pull三个镜像 
 ```  
@@ -98,40 +99,10 @@ node:22.14.0
 ```
 也可以自行在本地现行构建这三个镜像，从而不需要依赖网络下载。 
 
-注意：该部署方式只是用于内网安全环境，请勿对公网开放。生产环境可以考虑对后端服务、前端服务使用nginx实现https代理防止抓包泄露数据。
+> 注意：
+> 该部署方式只是用于内网安全环境，请勿对公网开放。
+> 生产环境可以考虑对后端服务、前端服务使用nginx实现https代理防止抓包泄露数据。
 
-
-### more ###
-```
-#手动构建镜像样例
-#solve
-#docker build -t solve:latest -f Dockerfile .
-docker build -t solve:latest --build-arg INDEX_URL=https://mirrors.aliyun.com/pypi/simple/ --build-arg TRUSTED_HOST=mirrors.aliyun.com  -f Dockerfile .      
-#solve-backend
-docker build -t solve-backend:latest --build-arg INDEX_URL=https://mirrors.aliyun.com/pypi/simple/ --build-arg TRUSTED_HOST=mirrors.aliyun.com  -f Dockerfile .
-#solve-frontend
-docker build -t solve-frontend:latest --build-arg REGISTRY=https://registry.npm.taobao.org/  -f Dockerfile .
-```
-
-```
-#单个容器启动样例
-docker run --name solve --env REDIS_HOST=192.168.253.128 -v /tmp:/tmp -d <solve_images_id>
-
-docker run --name solve-backend --env REDIS_HOST=192.168.253.128 -p 8000:8000 -v /tmp:/tmp -d <solve-backend_images_id>
-
-docker run --name solve-frontend --env REDIS_HOST=192.168.253.128 -p 8080:8080 -d <solve-frontend_images_id>
-
-```
-
-```
-# docker-compose 单个容器构建与启动
-# 构建
-docker-compose build solve
-# 启动（通过关闭会话实现放入后台，不能运行ctrl+c退出）
-docker-compose up -d solve
-# 以交互模式启动，方便调试
-docker-compose run solve /bin/sh
-```
 
 usage
 --------------
