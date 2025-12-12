@@ -1,3 +1,18 @@
+# 0.18.1 (2025-12-12)
+### Added
+  - `__render__` 语法支持
+  - `__call__` 语法支持
+  - 双重渲染支持
+  - 支持通过http请求获取session字段的值
+
+### Changed
+  - solve启动优化
+  - solve-backend使用`.env`、环境变量引入参数
+  
+### Fixed
+  - solve一些告警修复
+  
+
 # 0.17.0 (2025-05-30)
 ### Changed
  - redis配置格式调整
