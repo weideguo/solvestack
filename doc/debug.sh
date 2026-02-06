@@ -1,3 +1,6 @@
+################################ solve
+mkdir -p /tmp/solve/playbook
+
 cd  /home/weideguo/gitproject
 
 docker run -it                                        \
@@ -24,12 +27,7 @@ apt update
 apt install iproute2 sshpass pv -y
 
 
-
-
-
-
-
-
+################################ solve-backend 
 docker run -it                                                                          \
 --name solve-be-3.13                                                                    \
 --network host                                                                          \
@@ -46,17 +44,11 @@ bash
 cd /data/solve-backend
 pip install -r requirements.txt
 
-python durable_server.py 
+nohup python durable_server.py &
 python manage.py runserver 0.0.0.0:8000 
 
 
-
-
-
-
-
-
-
+################################ solve-frontend 
 docker run -it                                                                       \
 --name solve-fe-16                                                                   \
 --network host                                                                       \

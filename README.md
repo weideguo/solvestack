@@ -74,6 +74,8 @@ docker
 ### start ### 
 ```
 cd ${SRC_HOME}
+# 使用样例数据库，否则后端需要先初始化才能启动
+cp solve-backend/db.sqlite3.demo docker/solve-backend/db.sqlite3
 # 设置相关依赖参数，根据注释的信息进行更改，更改完毕删除`#`注释的信息，不能存在多余空格
 vim .env
 # 构建镜像并启动容器，生成四个镜像并启动四个容器（再次执行不会新创建镜像）

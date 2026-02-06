@@ -31,9 +31,7 @@ CREATE TABLE IF NOT EXISTS "auth_new_apiinvokerule" (
 
 ### 生成token  
 ```shell
-echo `date +%s%N`.${RANDOM} | md5sum
-openssl rand -base64 2048 | md5sum
-python -c 'import random;begin_char=33;end_char=126;key_len=2048;print(("".join(map(lambda i : chr(random.randint(begin_char,end_char)) ,range(key_len)))).encode("latin1"))' | md5sum
+openssl rand -hex 16
 
 ```
 
@@ -66,7 +64,9 @@ values
 -1
 );
 
-insert into auth_new_apiinvokerule values 
+insert into auth_new_apiinvokerule 
+(id,path,source,method,params,body)
+values 
 (1, '["/api/v1/target/info"]', '["127.0.0.1"]', '["GET","POST"]', '[{"a": "aaaa", "v": "vvv"},{"a": "aaa"},{"a": "aaaaa"}]', '[{"a": "aaaa", "v": "vvv"}]');
 insert into auth_new_apiinvokerule values 
 (2, '["/api/v1/target/stats"]', '["127.0.0.1"]', '["GET","POST"]', '[]', '[]');
