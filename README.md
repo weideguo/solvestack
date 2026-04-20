@@ -87,17 +87,18 @@ CONFIG SET SAVE "900 1 300 10 60 10000"
 # 入solve容器，手动安装以下依赖
 apt update && apt install -y sshpass pv
 ```
-依照[highlight](./highlight)进行自定义高亮设置。  
+
 
 ### info ###
 http://${CURRENT_IP}:8080    
 admin/test1234  
 
-需要联网从dockerhub的公共仓库（建议使用国内代理）pull三个镜像 
+需要联网从dockerhub的公共仓库（建议使用国内代理）pull基础镜像 
 ```  
 redis:4.0  
 python:3.13  
-node:22.14.0
+nginx:alpine  # docker tag nginx:1.29.8-alpine nginx:alpine
+node:24       # docker tag node:24.15.0-alpine3.22 node:24   # 仅前端编译需要
 ```
 也可以自行在本地现行构建这三个镜像，从而不需要依赖网络下载。 
 

@@ -38,8 +38,8 @@ services:
     volumes:
       - "${DATA_PATH_LOCAL}:${DATA_PATH_DOCKER}"
       - "./docker/solve-backend/db.sqlite3:/data/solve-backend/db.sqlite3"
-    ports:
-      - "${BACKEND_PORT}:8000"
+    #ports:
+    #  - "${BACKEND_PORT}:8000"
     environment:
       REDIS_HOST: ${REDIS_HOST}
       REDIS_PORT: ${REDIS_PORT}

@@ -50,19 +50,6 @@ python manage.py runserver 0.0.0.0:8000
 
 ################################ solve-frontend 
 docker run -it                                                                       \
---name solve-fe-16                                                                   \
---network host                                                                       \
--v /home/weideguo/gitproject/solve-frontend:/data/solve-frontend                     \
--v /root/.npmrc:/root/.npmrc                                                         \
---privileged                                                                         \
-node:16.14                                                                           \
-bash
-
-
-
-
-
-docker run -it                                                                       \
 --name solve-fe-22                                                                   \
 --network host                                                                       \
 -v /home/weideguo/gitproject/solve-frontend-new:/data/solve-frontend-new             \
@@ -71,11 +58,16 @@ docker run -it                                                                  
 node:alpine-v22.14.0                                                                 \
 sh
 
-#npm install -g @vue/cli@5.0.8
-npm install -g @vue/cli
+docker run -it                                                                       \
+--name solve-fe-24                                                                   \
+--network host                                                                       \
+-v /home/weideguo/gitproject/solve-frontend-new:/data/solve-frontend                 \
+-v /root/.npmrc:/root/.npmrc                                                         \
+--privileged                                                                         \
+node:24.15.0-alpine3.22                                                              \
+sh
 
-
-npm run serve -- --host 0.0.0.0 --port 5000
+npm run dev -- --host 0.0.0.0 --port 5000
 
 
 # 前端检查包依赖使用与否

@@ -17,6 +17,3 @@ docker-compose up -d solve-frontend
 docker exec -it solve_solve_1 bash
 # 手动安装以下依赖
 apt update && apt install -y sshpass pv
-
-# 如果更新前端项目，需要替换以下文件
-docker cp highlight/prism-bash.js solve_solve-frontend_1:/data/solve-frontend/node_modules/prismjs/components/prism-bash.js
