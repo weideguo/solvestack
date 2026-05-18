@@ -1,7 +1,12 @@
-DATA_PATH_LOCAL/DATA_PATH_DOCKER 下目录参考
-
+## 目录  
+DATA_PATH_LOCAL/DATA_PATH_DOCKER 下目录参考  
+```
 |-- playbook                    # 可选，手动创建，将playbook存放于此。
 `-- solve                       # 启动后端时，不存在则自动创建。web页面能看到的根目录。
     |-- installer               # 可选，手动创建，将不带有敏感信息的文件存放与此，这个目录可以挂到nginx。
     |-- installer_security      # 可选，手动创建，将带有敏感信息的文件存放与此，这个目录不可以挂到nginx。
     `-- playbook                # 启动后端时，不存在则自动创建。执行`快速任务`时后端生成playbook存放于此。
+```
+
+## 危险命令过滤  
+在配置文件`solve/conf/config.py`修改参数[deny_commands](https://github.com/weideguo/solve/blob/master/conf/config.py#L184)实现对指定命令特殊处理，从而实现过滤危险命令。  

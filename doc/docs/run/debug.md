@@ -1,4 +1,7 @@
-################################ solve
+# 进行调试  
+
+## solve
+``` shell
 mkdir -p /tmp/solve/playbook
 
 cd  /home/weideguo/gitproject
@@ -24,10 +27,11 @@ pip install -r requirements.txt
 python bin/solve.py start 
 
 apt update
-apt install iproute2 sshpass pv -y
+apt install -y iproute2 sshpass pv 
+```
 
-
-################################ solve-backend 
+## solve-backend 
+``` shell
 docker run -it                                                                          \
 --name solve-be-3.13                                                                    \
 --network host                                                                          \
@@ -46,9 +50,10 @@ pip install -r requirements.txt
 
 nohup python durable_server.py &
 python manage.py runserver 0.0.0.0:8000 
+```
 
-
-################################ solve-frontend 
+## solve-frontend 
+``` shell
 docker run -it                                                                       \
 --name solve-fe-22                                                                   \
 --network host                                                                       \
@@ -72,4 +77,4 @@ npm run dev -- --host 0.0.0.0 --port 5000
 
 # 前端检查包依赖使用与否
 depcheck
-
+```

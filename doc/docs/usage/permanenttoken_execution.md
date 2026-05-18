@@ -1,3 +1,4 @@
+``` python
 #!/bin/env python
 # -*- coding: utf-8 -*-
 # 调用solvestack的接口执行工单
@@ -72,3 +73,4 @@ for r_info in r["data"]:
 # GET
 url = f"{base_usl}/api/v1/order/summary?workid={workid}"
 
+```

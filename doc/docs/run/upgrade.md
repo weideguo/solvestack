@@ -1,5 +1,7 @@
-###### 发布新版本
+# 新版本更新    
 
+## 更新  
+``` shell
 # 修改参数，至少需要修改版本号
 vim .env
 
@@ -16,4 +18,5 @@ docker-compose up -d solve-frontend
 # 进入solve容器
 docker exec -it solve_solve_1 bash
 # 手动安装以下依赖
-apt update && apt install -y sshpass pv
+apt update && apt install -y sshpass pv curl wget
+```
