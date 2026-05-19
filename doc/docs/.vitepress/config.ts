@@ -4,8 +4,8 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   base: '/solvestack/', 
   title: 'solvestack',
-  description: '记录我的学习与开发历程',
-  head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
+  description: '简单命令分发系统',
+  head: [['link', { rel: 'icon', href: '/solvestack/favicon.ico' }]],
   outDir: '../../docs', 
   
   themeConfig: {
