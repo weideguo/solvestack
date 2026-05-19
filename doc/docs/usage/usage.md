@@ -30,7 +30,7 @@
 |原始字段信息|扩展后字段信息|
 | :--- | :---- |
 |"name": "cluster1"                  |"name": "cluster1"               |
-|"db2": "server_db_192.168.253.128"  |"db2": {"name":"server_db_192.168.152.128", "const":"const123", "host":"realhost_192.168.253.128", "db_port":"1039"}|
+|"db2": "server_db_192.168.253.128"  |<span v-pre>"db2": {"name":"server_db_192.168.152.128", "const":"const123", "host":"realhost_192.168.253.128", "db_port":"1039"}</span> |
 |"site": "mysite_0001"               |"site": "mysite_0001"             |
 |...                                 |...                           |
 
